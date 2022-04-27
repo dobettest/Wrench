@@ -1,4 +1,4 @@
-import { getType, zero } from "./index";
+import { getType, zero } from "./common";
 
 export const minute: number = 60 * 1000;
 export const hour: number = 60 * minute;

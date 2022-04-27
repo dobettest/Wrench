@@ -1,0 +1,59 @@
+{
+  "name": "@wrench/scaffold",
+  "version": "0.0.1",
+  "description": "A tool to help web developer build env",
+  "main": "index.js",
+  "bin": {
+    "wrench": "bin/wrench-script.js"
+  },
+  "files": [
+    "bin",
+    "webpack",
+    "utils"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dobettest/Wrench.git"
+  },
+  "keywords": [
+    "scaffold",
+    "javascipt"
+  ],
+  "bugs": {
+    "url": "https://github.com/dobettest/Wrench/issues"
+  },
+  "homepage": "https://github.com/dobettest/Wrench/scaffold#readme",
+  "author": "gene",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/core": "^7.17.9",
+    "@babel/eslint-parser": "^7.17.0",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-react": "^7.16.7",
+    "@babel/preset-typescript": "^7.16.7",
+    "@dobettest/utils": "^1.0.1",
+    "commander": "^9.1.0",
+    "dotenv": "^16.0.0",
+    "dotenv-expand": "^8.0.3",
+    "eslint": "^8.13.0",
+    "eslint-plugin-sonarjs": "^0.13.0",
+    "eslint-webpack-plugin": "^3.1.1",
+    "minimist": "^1.2.6",
+    "react": "^18.0.0",
+    "resolve-url-loader": "^5.0.0",
+    "terser-webpack-plugin": "^5.3.1",
+    "typescript": "^4.6.3",
+    "vue": "^3.2.31",
+    "vue-loader": "^17.0.0",
+    "webpack": "^5.72.0",
+    "webpack-dev-server": "^4.8.1",
+    "webpack-merge": "^5.8.0"
+  },
+  "devDependencies": {
+    "mini-css-extract-plugin": "^2.6.0",
+    "webpack-cli": "^4.9.2"
+  }
+}
