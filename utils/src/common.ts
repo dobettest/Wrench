@@ -13,7 +13,6 @@ export function wrapperNumber(num: number | string, len: number = 3): string {
     len = Math.max(len, 1);//解决numbers out of order in {} quantifier问题
     const source = `\\d{1,${len}}(?=(\\d{${len}})+$)`;
     const reg = new RegExp(source, 'g');
-    console.log(reg)
     return `${num}`.replace(reg, '$&,');
 }
 /**
@@ -27,7 +26,7 @@ export function isPrimitiveValue(params: any): boolean {
 /**
  * @description 获取数据类型
  * @param param any 
- * @returns 参数类型
+ * @returns string
  */
 export function getType(param: any): string {
     if (isPrimitiveValue(param)) {
@@ -58,4 +57,21 @@ export function toBase64(file: File): Promise<any> {
         reader.onload = () => resolve(reader.result);
         reader.onerror = error => reject(error);
     });
+}
+/**
+ * 
+ * @param initialValue 原始值
+ * @param effect 副作用函数
+ * @returns 修改后的值
+ */
+export function expandFn(initialValue: any, effect: Function): any {
+    let fn: Function = (initialValue: any): any => initialValue;
+    if (typeof effect === "function") {
+        fn = effect;
+    }
+    let returnValue = fn(initialValue);
+    if (typeof returnValue === undefined) {
+        throw new Error("the return value can not be undefined")
+    }
+    return returnValue;
 }

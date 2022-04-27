@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "target": "ESNext",
+        "module": "commonjs",
+        "paths": {
+            "@": [
+                "."
+            ]
+        }
+    },
+    "exclude": [
+        "dist",
+        "node_modules"
+    ]
+}
