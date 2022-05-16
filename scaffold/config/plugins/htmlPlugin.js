@@ -1,23 +1,18 @@
 const path = require("path");
-const { expandConfig, wrenchConfig, projectPath } = require("@/utils");
-const package = require(path.resolve(projectPath, './package.json'));
+const { expandConfig} = require("../../utils");
 
-module.exports = (mode) => {
+module.exports = () => {
   return expandConfig("htmlPlugin", {
     title: "wrench",
-    favicon: path.resolve(__dirname, "../../template/favicon.ico"),
-    template: path.resolve(__dirname, "../../template/index.ejs"),
+    favicon: path.join(__dirname, "../../template/favicon.ico"),
+    template: path.join(__dirname, "../../template/index.ejs"),
     filename: "index.html",
-    chunksSortMode: "manual",
-    excludeAssets: [],
-    minify: false,
-    inject: 'body',
+    // chunksSortMode: "manual",
+    // excludeAssets: [],
+    // minify: false,
+    // inject: 'body',
     templateParameters: {
-      cdn: {
-        js: cdn['js'],
-        css: cdn['css']
-      }
-    }
+    },
     // excludeChunks: ['polyfill']
   });
 }

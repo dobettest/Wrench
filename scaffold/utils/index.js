@@ -59,8 +59,10 @@ function loadEnv(mode) {
     const localPath = `${basePath}.local`;
     const load = envPath => {
         try {
-            const env = dotenv.config({ path: envPath })
-            dotenvExpand(env)
+            if (isFileExist(envPath)) {
+                const env = dotenv.config({ path: envPath })
+                dotenvExpand(env)
+            }
         } catch (err) {
             // only ignore error if file is not found
             if (err.toString().indexOf('ENOENT') < 0) {

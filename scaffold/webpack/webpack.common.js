@@ -1,8 +1,25 @@
-const eslintPluginOption = require("./plugins/eslintPlugin");
+const eslintPluginOption = require("../config/plugins/eslintPlugin");
 const ESLintPlugin = require('eslint-webpack-plugin');
-const babelLoader = require("./loader/babelLoader");
-const styleLoader = require("./loader/styleLoader");
-module.exports = {
+const babelLoader = require("../config/loader/babelLoader");
+const styleLoader = require("../config/loader/styleLoader");
+const entry = require("../config/entry");
+const { wrenchConfig, getRelativePath } = require("../utils");
+const { merge } = require('webpack-merge');
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const htmlPlugin = require("../config/plugins/htmlPlugin");
+let { type = 'react' } = wrenchConfig();
+const defaultConf = {
+    entry,
+    resolve: {
+        alias: {
+            '@': getRelativePath('src')
+        },
+        extensions: ['.mjs', '.js', '.jsx', '.vue', '.json', '.wasm']
+    },
+    output: {
+        filename: '[name].js',
+        path: getRelativePath("dist")
+    },
     module: {
         rules: [
             {
@@ -11,7 +28,7 @@ module.exports = {
                 use: [
                     {
                         loader: 'babel-loader',
-                        options: babelLoader()
+                        options: babelLoader
                     }
                 ]
             },
@@ -54,6 +71,15 @@ module.exports = {
         ]
     },
     plugins: [
-        new ESLintPlugin(eslintPluginOption)
+        new HtmlWebpackPlugin(htmlPlugin()),
+        new ESLintPlugin(eslintPluginOption),
     ]
+}
+module.exports = () => {
+    if (/^(vue)/.test(type)) {
+        const vueLoader = require("../config/loader/vueLoader")
+        return merge(defaultConf, vueLoader(type))
+    } else {
+        return defaultConf;
+    }
 }

@@ -1,6 +1,6 @@
 ## 一、安装
 ```sh
-npm install @wrench/scaffold --save-dev
+npm install @dobettest/scaffold --save-dev
 ```
 
 ## 二、配置

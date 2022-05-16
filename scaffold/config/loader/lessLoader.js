@@ -1,4 +1,4 @@
-const { expandConfig } = require("@/utils");
+const { expandConfig } = require("../../utils");
 
 module.exports = expandConfig('less', {
     lessOptions: {

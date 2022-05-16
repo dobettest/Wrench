@@ -1,4 +1,4 @@
-const { expandConfig, getRelativePath } = require("@/utils");
+const { expandConfig, getRelativePath } = require("../../utils");
 module.exports = expandConfig("copyPlugin", {
     patterns: [
         {

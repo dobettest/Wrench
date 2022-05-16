@@ -16,16 +16,10 @@
     <title>
         <%= htmlWebpackPlugin.options.title %>
     </title>
-    <% for (var css of cdn.css) { %>
-        <link rel="stylesheet" href="<%= css %>" />
-    <% } %>
 </head>
 
 <body>
-    <div id="app" style="height: 100%"></div>
-    <% for (var js of cdn.js) { %>
-        <script type="text/javascript" defer src="<%= js %>"></script>
-        <% } %>
+    <div id="app"></div>
 </body>
 
 </html>

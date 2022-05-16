@@ -1,11 +1,11 @@
 // https://cn.eslint.org/ ESLint中文文档
-const { wrenchConfig } = require("@/utils");
+const { wrenchConfig } = require("../../utils");
 
-const {
+let {
   prettierFixed = true,
   type = "react"
 } = wrenchConfig();
-
+type = type.replace(/\d/g, '')
 const rules = {
   "indent": "off",
   "no-tabs": "off",
@@ -28,18 +28,18 @@ const rules = {
   "eqeqeq": "off",
   "no-multi-assign": ["off"],
   "class-methods-use-this": ["off"],
-  "react/display-name": "off",
+  // "react/display-name": "off",
   "quotes": [
     "off",
     "single"
   ],
   // 只提示声明了propTypes的组件的错误
-  "react/prop-types": [
-    "warn",
-    { "skipUndeclared": true }
-  ],
-  "react-hooks/rules-of-hooks": "error", // 检查 Hook 的规则
-  "react-hooks/exhaustive-deps": "warn", // 检查 effect 的依赖
+  // "react/prop-types": [
+  //   "warn",
+  //   { "skipUndeclared": true }
+  // ],
+  // "react-hooks/rules-of-hooks": "error", // 检查 Hook 的规则
+  // "react-hooks/exhaustive-deps": "warn", // 检查 effect 的依赖
 }
 
 if (prettierFixed) {
@@ -94,15 +94,14 @@ const eslintConfig = {
     // 启用JSX
     ecmaFeatures: {
       "jsx": true
-    },
-    parser: "@babel/eslint-parser"
+    }
   },
   // 使用第三方插件
   plugins: [
     "sonarjs",
-    "react", // react语法检查
+    type === 'react' ? "react" : "vue",
     "import", // es6的import语法规则检查
-    "react-hooks", // react hooks 语法检查
+    // type === 'react' ? "react-hooks" : null, // react hooks 语法检查
     "prettier"
   ].filter(item => {
     if (!prettierFixed && item === "prettier") {

@@ -1,4 +1,4 @@
-const { expandConfig, loadEnv } = require("@/utils");
+const { expandConfig, loadEnv } = require("../../utils");
 module.exports = (mode) => {
     //加载变量
     loadEnv(mode)
