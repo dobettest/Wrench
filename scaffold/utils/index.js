@@ -5,11 +5,12 @@ let _cachedConfig;
 const projectPath = process.cwd();
 /**
  * @description 获取文件相对于项目的相对路径
- * @param {string} dir
+ * @param {string} 文件(夹)路径
+ * @param {string} 上下文路径
  * @returns {string}
  */
-function getRelativePath(dir) {
-    return path.join(projectPath, dir)
+function getRelativePath(dir, context = projectPath) {
+    return path.join(context, dir)
 }
 /**
  * @description 判断一个文件是否存在
@@ -92,11 +93,41 @@ function expandConfig(name, originalConfig, scope) {
     }
     return config;
 }
+/**
+ * @description 打印错误日志
+ * @param {string} 错误信息
+ */
+function printErr(err) {
+    console.error("an error occured: " + err);
+}
+/**
+ * @description 退出运行
+ * @param {string} 错误信息
+ */
+function exit(err) {
+    printErr(err);
+    process.exit(1);
+}
+/**
+ * 
+ * @param {string} oldPath 
+ * @param {string} newPath 
+ */
+function rename(oldPath, newPath) {
+    fs.renameSync(oldPath, newPath, (err) => {
+        if (err) {
+            exit(err)
+        }
+    })
+}
 module.exports = {
     wrenchConfig,
     isFileExist,
     expandConfig,
     loadEnv,
     setConfig,
-    getRelativePath
+    getRelativePath,
+    exit,
+    printErr,
+    rename
 }

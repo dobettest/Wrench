@@ -4,6 +4,7 @@ const program = new Command();
 const webpack = require("webpack");
 const devServer = require("webpack-dev-server");
 const { expandConfig } = require("../utils");
+const { template } = require("./wrench-template");
 function runner(script) {
     let config = require(`../webpack/webpack.${script}.js`);
     const _config = expandConfig('extendConfig', config);
@@ -17,7 +18,6 @@ function runner(script) {
             })
             break;
         case "build":
-            console.log('build')
             // compiler.run((err, res) => {
             //     if (err) {
             //         console.log('err')
@@ -31,5 +31,7 @@ function runner(script) {
 program.command("start <service>")
     .description('alias of webpack')
     .action(runner)
-
+program.command("template <action>")
+    .description("project template actions")
+    .action(template);
 program.parse(process.argv)
