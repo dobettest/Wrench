@@ -123,4 +123,4 @@ function genPassWord(mode: string, len: number = 6, rest: string = 's') {
 function checkPassword(mode: string, password: string, minLen: number = 8, maxLen: number = 12) {
     return mode.split("").every((item) => map[item].test(password)) && (password.length > minLen && password.length < maxLen)
 }
-console.log(checkPassword("nlcs", "123a我}"), genPassWord("nlus", 9))
+console.log(checkPassword("nlcs", "123a我}"), genPassWord("nlus", 9),'这是一个测试')

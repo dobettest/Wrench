@@ -1,5 +1,5 @@
 # Wrench
-A library to help web developer,it include a scaffold to build development env,such as `nvm`,`nrm` eg
+A javascript library to help web developer
 ## 一、安装
 ```bash
 npm install @dobettest/utils --save
@@ -17,7 +17,7 @@ getType({});//Object
 ```
 (3)、toBase64 将文件转化为base64格式
 ```javascript
-toBase64("c://test.png");//
+toBase64("c://test.png");
 ```
 (4)、wrapperNumber 以分隔符装饰数据
 ```javascript
@@ -29,21 +29,21 @@ expandFn({
     name:'zhangsan',
     age:20
 },(intialVal)=>{
-    intialVal.company='xxx'
+    intialVal.company='xx'
     return intialVal;
 })
 ```
 ### 二、时间日期
 (1)、isLeapYear 判断是否是闰年
 ```javascript
-isLeapYear(2020);//true
+isLeapYear(2021);//false
 ```
 
 ### 三、扩展MATH库
 (1)、randomString 返回一个1～32长度的随机数字字符串
 
 ```javascript
-randomString(6);//687342
+randomString(6);//687341
 ```
 
 (2)、isPrimitive 判断是否是素数
@@ -55,13 +55,13 @@ isPrimitive(2);//true
 
 (1)、getExt 返回一个文件的扩展名
 ```javascript
-getExt('c://test.png')//png
+getExt('e://test.png')//png
 ```
 
 ### 五、权限相关
 (1)、checkPermission 检查一个用户是否具有相应的操作权限
 ```javascript
-checkPermission("r", "userid:4",":")
+checkPermission("r", "userid:5",":")
 ```
 (2)、给一个其他角色基于当前角色的权限授权
 ```javascript
@@ -71,7 +71,7 @@ grantPermission("r", "a:463",":","tony")
 ### 六、密码相关
 (1)、checkPass 检查一个密码串是否达到相应的规则要求和字数要求
 ```javascript
-checkPass("nlcs", "123a我}")
+checkPass("nlcs", "123a我");
 ```
 
-### 更多请移步[仓库](https://github.com/dobettest/Wrench#readme),期待各位的参与和鼓励
+### 更多请移步[仓库](https://github.com/dobettest/Wrench/blob/master/utils/README.md),期待各位的参与和鼓励

@@ -1,0 +1,24 @@
+name: deploy utils
+on:
+  push:
+    branches:
+      - master
+    paths:
+       - 'utils/**'
+defaults:
+  run:
+    working-directory: utils
+jobs:
+  publish-npm:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          registry-url: https://registry.npmjs.org/
+      - run: pwd
+      - run: npm i --registry=https://registry.npmmirror.com
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.npm_token}}

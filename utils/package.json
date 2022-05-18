@@ -1,6 +1,6 @@
 {
   "name": "@dobettest/utils",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A library to help web developer",
   "main": "es/index.js",
   "files": [

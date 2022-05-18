@@ -1,7 +1,7 @@
 # This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
 # For more information see: https://help.github.com/actions/language-and-framework-guides/publishing-nodejs-packages
 
-name: Node.js Package
+name: deploy scaffold
 
 on:
   push:
@@ -9,23 +9,11 @@ on:
       - master
     paths:
        - 'scaffold/**'
-       - 'utils/**'
-
+defaults:
+  run:
+    working-directory: scaffold
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16
-          path: ${{github.event.paths}} === 'scaffold/**' ? 'scaffold':'utils'
-      - run: cd ${{path}}
-      - run: npm ci
-      - run: npm test
-
   publish-npm:
-    needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -33,9 +21,8 @@ jobs:
         with:
           node-version: 16
           registry-url: https://registry.npmjs.org/
-          path: ${{github.event.paths}} === 'scaffold/**' ? 'scaffold':'utils'
-      - run: cd ${{path}}
-      - run: npm ci
+      - run: cd Wrench/scaffold
+      - run: npm i --registry=https://registry.npmmirror.com
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
