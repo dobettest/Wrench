@@ -1,6 +1,6 @@
 {
   "name": "@dobettest/scaffold",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A tool to help web developer build env",
   "main": "index.js",
   "bin": {

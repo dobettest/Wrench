@@ -9,6 +9,9 @@ module.exports = expandConfig("devServer", {
     // history 模式静态资源匹配
     index: publicPath
   },
+  client: {
+    overlay: { errors: true, warnings: false }//当出现编译错误或警告时，在浏览器中显示全屏覆盖
+  },
   port: 8080,
   host: "0.0.0.0",
   hot: true,      // 启用webpack的模块热替换功能
