@@ -3,15 +3,18 @@ const { Command } = require("commander");
 const program = new Command();
 const webpack = require("webpack");
 const devServer = require("webpack-dev-server");
-const { expandConfig } = require("../utils");
 const { template } = require("./wrench-template");
 function runner(script) {
-    let config = require(`../webpack/webpack.${script}.js`);
-    const _config = expandConfig('extendConfig', config);
-    const compiler = webpack(_config);
+    let resolveConfig = require("../webpack/webpack.config");
+    let compiler = null;
+    try {
+        compiler = webpack(resolveConfig(script));
+    } catch (error) {
+        throw new Error(error.message)
+    }
     switch (script) {
         case "dev":
-            const devServerConf = require("../config/devServer");
+            const devServerConf = require("../webpack/devServer");
             const server = new devServer(devServerConf, compiler);
             server.startCallback(() => {
                 console.log(`Starting server on http://localhost:${devServerConf["port"]}`);

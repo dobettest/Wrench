@@ -1,8 +1,6 @@
-const {merge} = require('webpack-merge');
 const { expandConfig } = require('../utils/index.js');
-const commonConf = require('./webpack.common.js');
-const defaultConf={
-    mode:"development",
-    devtool: 'eval-source-map',
+const defaultConf = {
+    mode: "development",
+    devtool: 'eval-cheap-module-source-map',//Best support for sourcemaps whilst debugging,https://github.com/TypeStrong/ts-loader#appendtssuffixto
 }
-module.exports=expandConfig("dev",merge(commonConf(),defaultConf));
+module.exports = expandConfig("dev", defaultConf);

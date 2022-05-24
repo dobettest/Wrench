@@ -2,7 +2,7 @@ const { exec } = require("child_process");
 const { cwd } = require("process");
 function clone(url, localPath = cwd()) {
     return new Promise((resolve, reject) => {
-        const reg = /^https:\/\/([\w]+)\.com\/([\s\S]+)/;
+        const reg = /^https:\/\/([a-zA-Z]+)\.com\/([\s\S]+)/;
         const [raw, type] = url.match(reg);
         switch (type) {
             case 'github':

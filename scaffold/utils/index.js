@@ -3,6 +3,7 @@ const fs = require("fs");
 let _cachedConfig;
 // 项目的根目录
 const projectPath = process.cwd();
+// console.log('projectPath',projectPath)
 /**
  * @description 获取文件相对于项目的相对路径
  * @param {string} 文件(夹)路径
