@@ -1,6 +1,6 @@
 {
   "name": "@dobettest/scaffold",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "A tool to help web developer build env",
   "main": "index.js",
   "bin": {
@@ -57,16 +57,18 @@
     "sass": "^1.51.0",
     "terser-webpack-plugin": "^5.3.1",
     "webpack-dev-server": "^4.8.1",
-    "webpack-merge": "^5.8.0"
+    "webpack-merge": "^5.8.0",
+    "style-loader": "^3.3.1",
+    "eslint-config-prettier": "^8.5.0"
   },
   "peerDependencies": {
+    "core-js": "^3.8.3",
     "@babel/core": "^7.17.9",
     "@babel/eslint-parser": "^7.17.0",
     "@babel/plugin-transform-runtime": "^7.17.10",
     "@babel/preset-env": "^7.16.11",
     "babel-loader": "^8.2.5",
     "eslint": "^8.0.0",
-    "style-loader": "^3.3.1",
     "ts-loader": "^9.3.0",
     "typescript": "^4.6.4",
     "webpack": "^5.72.1"
@@ -76,12 +78,6 @@
       "optional": true
     },
     "less-loader": {
-      "optional": true
-    },
-    "postcss-loader": {
-      "optional": true
-    },
-    "style-loader": {
       "optional": true
     },
     "ts-loader": {

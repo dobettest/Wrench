@@ -56,7 +56,7 @@ module.exports = (mode) => {
                 ...lessLoader(envs),
                 ...sassLoader(envs),
                 babelLoader(envs),
-                ...vueLoader(envs)
+                vueLoader(envs)
             ].filter(Boolean)
         },
         plugins: [
