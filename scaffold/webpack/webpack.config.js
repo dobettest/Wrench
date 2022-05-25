@@ -55,7 +55,7 @@ module.exports = (mode) => {
                 ...assetsLoader(),
                 ...lessLoader(envs),
                 ...sassLoader(envs),
-                babelLoader(envs),
+                ...babelLoader(envs),
                 vueLoader(envs)
             ].filter(Boolean)
         },
