@@ -1,10 +1,20 @@
 const { expandConfig } = require("@dobettest/scaffold/utils");
 const babelOptions = require("../../config/babel");
 module.exports = (envs) => {
-    const inititalOptions = envs['vue'] ? { appendTsSuffixTo: [/\.vue$/] } : {}
+    const inititalOptions = envs['vue'] && envs['typescript'] ? { appendTsSuffixTo: [/\.vue$/] } : {}
     const tsLoaderOptions = expandConfig('tsLoader', inititalOptions);
-    return {
-        test: /\.(m?js|tsx?|jsx)$/,
+    return [{
+        test: /\.(m?js|jsx)$/,
+        exclude: /node_modules/,
+        use: [
+            {
+                loader: 'babel-loader',
+                options: babelOptions(envs)
+            }
+        ]
+    },
+    {
+        test: /\.tsx?$/,
         exclude: /node_modules/,
         use: [
             {
@@ -13,5 +23,5 @@ module.exports = (envs) => {
             },
             { loader: 'ts-loader', options: tsLoaderOptions }
         ]
-    }
+    }]
 }
