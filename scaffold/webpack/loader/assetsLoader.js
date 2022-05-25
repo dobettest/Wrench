@@ -7,7 +7,7 @@ module.exports = () => {
     })
     const iconLoader = () => {
         if (enable) {
-            return [{
+            return {
                 test: /\.svg$/,
                 include: iconPaths,
                 exclude: /node_modules/,
@@ -18,9 +18,9 @@ module.exports = () => {
                         ...options
                     }
                 }]
-            }]
+            }
         }
-        return [];
+        return null;
     }
     const staticLoaders = [
         {
@@ -36,12 +36,13 @@ module.exports = () => {
             generator: {
                 //与output.assetModuleFilename是相同的,这个写法引入的时候也会添加好这个路径
                 filename: 'fonts/[name].[contenthash:8][ext]',
+                publicPath: '../'
             }
         },
         {
             test: /\.(png|jpe?g|gif|webp|svg|mp3)(\?.*)?$/,
             type: 'asset',
-            exclude: [...iconPaths],//排除icons
+            exclude: iconPaths,//排除icons
             //解析
             parser: {
                 //转base64的条件
@@ -53,11 +54,12 @@ module.exports = () => {
                 //与output.assetModuleFilename是相同的,这个写法引入的时候也会添加好这个路径
                 filename: 'img/[name].[contenthash:8][ext]',
                 //打包后对资源的引入，文件命名已经有/img了
+                publicPath: '../'
             }
         }
     ]
     return [
-        ...iconLoader(),
+        iconLoader(),
         ...staticLoaders
     ]
 }

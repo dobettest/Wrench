@@ -7,7 +7,9 @@ module.exports = () => {
     title: "wrench",
     favicon: path.join(__dirname, "../../template/favicon.ico"),
     template: path.join(__dirname, "../../template/index.ejs"),
-    filename: "index.html"
+    filename: "index.html",
+    templateParameters: {
+    }
   });
   return new HtmlWebpackPlugin(htmlOptions)
 }

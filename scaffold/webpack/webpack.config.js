@@ -8,13 +8,19 @@ const htmlPlugin = require('./plugins/htmlPlugin');
 const copyPlugin = require('./plugins/copyPlugin');
 const vueLoader = require('./loader/VueLoader');
 const { getRelativePath, expandConfig } = require('../utils');
+const entry = require("./entry");
+const output = require("./output");
+const cssLoader = require('@dobettest/scaffold/webpack/loader/cssLoader');
+const vuePlugin = require('@dobettest/scaffold/webpack/plugins/vuePlugin');
 const envs = expandConfig('envs', {
     react: false,
     vue: true,
     prettier: true,
-    fix: false,
+    fix: true,
     less: false,
-    scss: false
+    scss: false,
+    typescript: false,
+    publicPath: '../'
 });
 const getExtensions = (envs) => {
     const optionalExtensions = [
@@ -35,26 +41,30 @@ const getExtensions = (envs) => {
 module.exports = (mode) => {
     const isProduction = mode !== "dev"
     const commonConfig = {
+        entry,
+        output,
         resolve: {
             alias: {
-                // '@': getRelativePath("./src")
+                '@': getRelativePath("./src")
             },
             extensions: getExtensions(envs)
         },
         module: {
             rules: [
+                ...cssLoader(),
                 ...assetsLoader(),
                 ...lessLoader(envs),
                 ...sassLoader(envs),
                 babelLoader(envs),
                 ...vueLoader(envs)
-            ]
+            ].filter(Boolean)
         },
         plugins: [
+            copyPlugin(),
+            vuePlugin(envs),
             htmlPlugin(),
             eslintPlugin(envs),
-            copyPlugin()
-        ]
+        ].filter(Boolean)
     };
     const optionalConf = isProduction ? require("./webpack.prod") : require("./webpack.dev");
     // console.log(isProduction,'mode',mode)

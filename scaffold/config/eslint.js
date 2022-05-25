@@ -34,7 +34,8 @@ module.exports = (envs) => {
         {
             extend: 'plugin:vue/recommended',
             key: 'vue',
-            rules: {}
+            rules: {},
+            plugins:['vue']
         },
         {
             extend: 'plugin:react/recommended',

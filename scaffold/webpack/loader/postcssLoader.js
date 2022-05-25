@@ -6,7 +6,6 @@ const postcssOptions = expandConfig('postcss', {
 })
 module.exports = {
     loader: 'postcss-loader',
-    exclude: /node_modules/,
     options: {
         postcssOptions: postcssOptions
     }

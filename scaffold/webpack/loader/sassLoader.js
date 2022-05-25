@@ -7,12 +7,22 @@ const sassLoader = expandConfig('sassOptions', {
     }
 })
 module.exports = ({ scss = false }) => {
-    return scss ? [{
+    const scssRules = [{
         test: /\.scss$/,
         exclude: /node_modules/,
         use: [
             ...styleLoader(),
             sassLoader
         ]
-    }] : []
+    },
+    {
+        test: /\.scss$/,
+        include: /node_modules/,
+        use: [
+            ...styleLoader(false),
+            sassLoader
+        ]
+    }
+    ]
+    return scss ? scssRules : []
 }
