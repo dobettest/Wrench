@@ -1,6 +1,6 @@
 {
   "name": "@dobettest/scaffold",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "description": "A tool to help web developer build env",
   "main": "index.js",
   "bin": {
@@ -58,6 +58,7 @@
     "minimist": "^1.2.6",
     "node-echo": "^0.1.1",
     "sass": "^1.51.0",
+    "schema-utils": "^4.0.0",
     "style-loader": "^3.3.1",
     "terser-webpack-plugin": "^5.3.1",
     "ts-loader": "^9.3.0",
@@ -73,8 +74,8 @@
     "core-js": "^3.8.3",
     "eslint": "^8.0.0",
     "typescript": "^4.6.4",
-    "webpack": "^5.72.1",
-    "vue-loader": "^17.0.0||^15.9.8"
+    "vue-loader": "^17.0.0||^15.9.8",
+    "webpack": "^5.72.1"
   },
   "peerDependenciesMeta": {
     "sass-loader": {

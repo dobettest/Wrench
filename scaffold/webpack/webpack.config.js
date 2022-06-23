@@ -13,6 +13,8 @@ const output = require("./output");
 const cssLoader = require('./loader/cssLoader');
 const vuePlugin = require('./plugins/vuePlugin');
 const definePlugin = require('./plugins/definePlugin');
+const { loadEnv } = require('../utils');
+const aegisLoader = require('./loader/aegisLoader');
 const getExtensions = (envs) => {
     const optionalExtensions = [
         //typescript为一级公民
@@ -50,7 +52,8 @@ module.exports = (mode) => {
                 ...lessLoader(envs),
                 ...sassLoader(envs),
                 ...babelLoader(envs),
-                vueLoader(envs)
+                vueLoader(envs),
+                aegisLoader(envs)
             ].filter(Boolean)
         },
         plugins: [

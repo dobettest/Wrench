@@ -1,5 +1,6 @@
 const { expandConfig, getRelativePath } = require("../utils");
 const { micro = false } = process.env.wrenchEnvs;
+const { name } = path.resolve(process.cwd(), "package.json");
 const optionalOutput = () => {
     return micro ? {
         library: `${name}-[name]`,
