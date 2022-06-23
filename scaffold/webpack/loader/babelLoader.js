@@ -1,4 +1,4 @@
-const { expandConfig } = require("@dobettest/scaffold/utils");
+const { expandConfig } = require("../../utils");
 const babelOptions = require("../../config/babel");
 module.exports = (envs) => {
     const inititalOptions = envs['vue'] && envs['typescript'] ? { appendTsSuffixTo: [/\.vue$/] } : {}

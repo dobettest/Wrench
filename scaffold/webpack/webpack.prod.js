@@ -5,7 +5,7 @@ const CompressionPlugin = require('./plugins/compressionPlugin.js');
 const TerserPlugin = require('./plugins/TerserPlugin.js');
 const CleanPlugin = require('./plugins/cleanPlugin.js');
 const CssMinimizerPlugin = require('./plugins/CssMinimizerPlugin.js');
-const { react = false, vue = true } = process.env.wrenchEnvs;
+const { react = false, vue = true } = process.env;
 const map = {
     commonReact: react,
     commonVue: vue

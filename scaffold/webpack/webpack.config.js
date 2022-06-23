@@ -13,7 +13,7 @@ const output = require("./output");
 const cssLoader = require('./loader/cssLoader');
 const vuePlugin = require('./plugins/vuePlugin');
 const definePlugin = require('./plugins/definePlugin');
-const { loadEnv } = require('../utils');
+const { loadEnv, expandConfig } = require('../utils');
 const aegisLoader = require('./loader/aegisLoader');
 const getExtensions = (envs) => {
     const optionalExtensions = [
@@ -35,7 +35,21 @@ module.exports = (mode) => {
     const isProduction = mode !== "dev"
     //加载变量
     loadEnv(mode);
-    const envs = process.env.wrenchEnvs;
+    const envs = expandConfig('envs', {
+        react: false,
+        vue: true,
+        prettier: true,
+        fix: true,
+        less: false,
+        scss: false,
+        typescript: false,
+        publicPath: '../',
+        aegis: false,//腾讯云前端性能监控开关
+        micro: false//微前端开关,注入qiankun的框架内容
+
+    });
+    //注入到process.env方便获取
+    Object.assign(process.env, { ...envs });
     const commonConfig = {
         entry: entry(envs),
         output,
