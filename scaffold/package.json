@@ -1,6 +1,6 @@
 {
   "name": "@dobettest/scaffold",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "A tool to help web developer build env",
   "main": "index.js",
   "bin": {
@@ -11,7 +11,8 @@
     "webpack",
     "utils",
     "template",
-    "config"
+    "config",
+    "CHANGELOG.md"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -33,15 +34,17 @@
   "dependencies": {
     "@dobettest/utils": "^1.0.1",
     "@vue/cli-plugin-babel": "^5.0.4",
+    "aegis-web-sdk": "^1.35.26",
     "autoprefixer": "^10.4.7",
     "chalk": "^4.1.2",
     "commander": "^9.1.0",
     "compression-webpack-plugin": "^10.0.0",
     "copy-webpack-plugin": "^11.0.0",
-    "core-js": "^3.22.6",
+    "core-js": "^3.8.3",
     "css-minimizer-webpack-plugin": "^3.4.1",
     "dotenv": "^16.0.0",
     "dotenv-expand": "^8.0.3",
+    "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-sonarjs": "^0.13.0",
@@ -55,23 +58,23 @@
     "minimist": "^1.2.6",
     "node-echo": "^0.1.1",
     "sass": "^1.51.0",
-    "terser-webpack-plugin": "^5.3.1",
-    "webpack-dev-server": "^4.8.1",
-    "webpack-merge": "^5.8.0",
     "style-loader": "^3.3.1",
-    "eslint-config-prettier": "^8.5.0",
-    "ts-loader": "^9.3.0"
+    "terser-webpack-plugin": "^5.3.1",
+    "ts-loader": "^9.3.0",
+    "webpack-dev-server": "^4.8.1",
+    "webpack-merge": "^5.8.0"
   },
   "peerDependencies": {
-    "core-js": "^3.8.3",
     "@babel/core": "^7.17.9",
     "@babel/eslint-parser": "^7.17.0",
     "@babel/plugin-transform-runtime": "^7.17.10",
     "@babel/preset-env": "^7.16.11",
     "babel-loader": "^8.2.5",
+    "core-js": "^3.8.3",
     "eslint": "^8.0.0",
     "typescript": "^4.6.4",
-    "webpack": "^5.72.1"
+    "webpack": "^5.72.1",
+    "vue-loader": "^17.0.0||^15.9.8"
   },
   "peerDependenciesMeta": {
     "sass-loader": {
@@ -80,7 +83,7 @@
     "less-loader": {
       "optional": true
     },
-    "ts-loader": {
+    "vue-loader": {
       "optional": true
     }
   },

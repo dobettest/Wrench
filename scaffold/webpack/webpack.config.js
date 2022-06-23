@@ -10,18 +10,9 @@ const vueLoader = require('./loader/VueLoader');
 const { getRelativePath, expandConfig } = require('../utils');
 const entry = require("./entry");
 const output = require("./output");
-const cssLoader = require('@dobettest/scaffold/webpack/loader/cssLoader');
-const vuePlugin = require('@dobettest/scaffold/webpack/plugins/vuePlugin');
-const envs = expandConfig('envs', {
-    react: false,
-    vue: true,
-    prettier: true,
-    fix: true,
-    less: false,
-    scss: false,
-    typescript: false,
-    publicPath: '../'
-});
+const cssLoader = require('./loader/cssLoader');
+const vuePlugin = require('./plugins/vuePlugin');
+const definePlugin = require('./plugins/definePlugin');
 const getExtensions = (envs) => {
     const optionalExtensions = [
         //typescript为一级公民
@@ -40,8 +31,11 @@ const getExtensions = (envs) => {
 };
 module.exports = (mode) => {
     const isProduction = mode !== "dev"
+    //加载变量
+    loadEnv(mode);
+    const envs = process.env.wrenchEnvs;
     const commonConfig = {
-        entry,
+        entry: entry(envs),
         output,
         resolve: {
             alias: {
@@ -64,6 +58,7 @@ module.exports = (mode) => {
             vuePlugin(envs),
             htmlPlugin(),
             eslintPlugin(envs),
+            definePlugin()
         ].filter(Boolean)
     };
     const optionalConf = isProduction ? require("./webpack.prod") : require("./webpack.dev");

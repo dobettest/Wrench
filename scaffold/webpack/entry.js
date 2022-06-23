@@ -1,5 +1,18 @@
 const { expandConfig, getRelativePath } = require("../utils");
-
-module.exports = expandConfig('entry', {
-    'app': getRelativePath('src/app.js')
-})
+const aegisUtil = require('./aegis')
+module.exports = ({ aegis = false, miscro = false, vue = true, react = false }) => {
+    const map = {
+        aegis
+    }
+    const optionalEntry = [
+        {
+            name: 'aegis',
+            value: aegisUtil()
+        }].map((item) => { return map[item.name] === true ? item.value : undefined }).filter(Boolean);
+    const entrys = {
+        polyfill: ['core-js'],
+        ...optionalEntry(),
+        'app': getRelativePath('src/app.js')
+    }
+    return expandConfig('entry', entrys)
+}

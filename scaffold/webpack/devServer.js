@@ -1,6 +1,7 @@
 const { expandConfig } = require('../utils');
 const { publicPath = '/', NODE_ENV = "development" } = process.env;
 module.exports = expandConfig("devServer", {
+  headers: { 'Access-Control-Allow-Origin': '*' },//qiankun支持
   historyApiFallback: {
     rewrites: [
       // 有publicpath时候默认跳转

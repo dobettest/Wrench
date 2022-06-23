@@ -7,6 +7,7 @@ module.exports = () => {
                 from: getRelativePath('public'),
                 to: getRelativePath('dist'),
                 toType: 'dir',
+                noErrorOnMissing: true,//修复public文件夹下只有一个index.html文件时的报错
                 globOptions: {
                     dot: true,
                     gitignore: true,

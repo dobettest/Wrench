@@ -1,5 +1,16 @@
-const { expandConfig,getRelativePath } = require("../utils");
+const { expandConfig, getRelativePath } = require("../utils");
+const { micro = false } = process.env.wrenchEnvs;
+const optionalOutput = () => {
+    return micro ? {
+        library: `${name}-[name]`,
+        libraryTarget: 'umd',
+        jsonpFunction: `webpackJsonp_${name}`,
+        globalObject: 'window',
+    } : {}
+}
 module.exports = expandConfig('output', {
-    filename:"[name].js",
-    path:getRelativePath("dist")
+    clean: true,// 在生成文件之前清空 output 目录
+    filename: "[name].js",
+    path: getRelativePath("dist"),
+    ...optionalOutput()
 })

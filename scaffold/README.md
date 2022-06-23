@@ -54,3 +54,10 @@ npm install sass^1.51.0
 ```bash
 npm install less-loader
 ```
+
+### 关于其他配置
+!!!! 不推荐在package.json中去配置eslint等选项，重复的配置可能导致问题
+
+### 需要改进的问题
+
+对于一些文件仍然需要需要进行手动的导入，比如`qiankun`中的`public-path`文件，这个问题可能将在下一个版本进行修复，尽请期待。

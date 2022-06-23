@@ -57,6 +57,20 @@ function setConfig(envKey, configValue, defaultValue) {
  * @param {string} mode 
  */
 function loadEnv(mode) {
+    const envs = expandConfig('envs', {
+        react: false,
+        vue: true,
+        prettier: true,
+        fix: true,
+        less: false,
+        scss: false,
+        typescript: false,
+        publicPath: '../',
+        aegis: false,//腾讯云前端性能监控开关
+        micro: false//微前端开关,注入qiankun的框架内容
+
+    });
+    process.env = Object.assign(process.env, { "wrenchEnvs": envs });
     const basePath = path.resolve(projectPath, `.env${mode ? `.${mode}` : ``}`);
     const localPath = `${basePath}.local`;
     const load = envPath => {
