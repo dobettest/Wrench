@@ -7,13 +7,12 @@ const eslintPlugin = require('./plugins/eslintPlugin');
 const htmlPlugin = require('./plugins/htmlPlugin');
 const copyPlugin = require('./plugins/copyPlugin');
 const vueLoader = require('./loader/VueLoader');
-const { getRelativePath, expandConfig } = require('../utils');
+const { getRelativePath, expandConfig, loadEnv } = require('../utils');
 const entry = require("./entry");
 const output = require("./output");
 const cssLoader = require('./loader/cssLoader');
 const vuePlugin = require('./plugins/vuePlugin');
 const definePlugin = require('./plugins/definePlugin');
-const { loadEnv, expandConfig } = require('../utils');
 const aegisLoader = require('./loader/aegisLoader');
 const getExtensions = (envs) => {
     const optionalExtensions = [
@@ -33,6 +32,7 @@ const getExtensions = (envs) => {
 };
 module.exports = (mode) => {
     const isProduction = mode !== "dev"
+    process.env.NODE_ENV = mode;//不会根据mode设置
     //加载变量
     loadEnv(mode);
     const envs = expandConfig('envs', {
@@ -43,7 +43,7 @@ module.exports = (mode) => {
         less: false,
         scss: false,
         typescript: false,
-        publicPath: '../',
+        analyze: false,
         aegis: false,//腾讯云前端性能监控开关
         micro: false//微前端开关,注入qiankun的框架内容
 
@@ -51,8 +51,9 @@ module.exports = (mode) => {
     //注入到process.env方便获取
     Object.assign(process.env, { ...envs });
     const commonConfig = {
+        devtool: 'eval-cheap-module-source-map',
         entry: entry(envs),
-        output,
+        output: output(envs),
         resolve: {
             alias: {
                 '@': getRelativePath("./src")
@@ -61,13 +62,13 @@ module.exports = (mode) => {
         },
         module: {
             rules: [
+                vueLoader(envs),
                 ...cssLoader(),
-                ...assetsLoader(),
+                ...assetsLoader(envs),
                 ...lessLoader(envs),
                 ...sassLoader(envs),
+                aegisLoader(envs),
                 ...babelLoader(envs),
-                vueLoader(envs),
-                aegisLoader(envs)
             ].filter(Boolean)
         },
         plugins: [
@@ -78,7 +79,6 @@ module.exports = (mode) => {
             definePlugin()
         ].filter(Boolean)
     };
-    const optionalConf = isProduction ? require("./webpack.prod") : require("./webpack.dev");
-    // console.log(isProduction,'mode',mode)
+    const optionalConf = isProduction ? require("./webpack.prod")(envs) : require("./webpack.dev");
     return expandConfig('extendConfig', merge(commonConfig, optionalConf));
 }

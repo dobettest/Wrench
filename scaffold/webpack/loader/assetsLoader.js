@@ -35,8 +35,7 @@ module.exports = () => {
             },
             generator: {
                 //与output.assetModuleFilename是相同的,这个写法引入的时候也会添加好这个路径
-                filename: 'fonts/[name].[contenthash:8][ext]',
-                publicPath: '../'
+                filename: 'fonts/[name].[contenthash:8][ext]'
             }
         },
         {
@@ -54,7 +53,6 @@ module.exports = () => {
                 //与output.assetModuleFilename是相同的,这个写法引入的时候也会添加好这个路径
                 filename: 'img/[name].[contenthash:8][ext]',
                 //打包后对资源的引入，文件命名已经有/img了
-                publicPath: '../'
             }
         }
     ]

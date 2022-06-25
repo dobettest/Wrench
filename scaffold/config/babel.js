@@ -14,7 +14,6 @@ module.exports = (envs) => {
             key: 'vue'
         }
     ].map((item) => { return envs[item.key] === true ? item.name : undefined }).filter(Boolean)
-    // console.log(envs,optionalPresets)
     const babelOptions = expandConfig('babel', {
         presets: [
             [

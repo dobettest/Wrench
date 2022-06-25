@@ -1,3 +1,5 @@
+# 简介
+@dobettest/scaffold是一个工具集合，包括`github`模版添加、初始化项目、加速下载等,`webpack`支持项目开发和打包优化，内置了对`vue`、`react`的项目支持,使用环境变量`[scss,less,typescript,micro,aegis、publicPath、prettier]`轻松开启相关配置,按需加载,用户只需要关心核心业务的编写。
 ## 一、安装
 ```sh
 npm install @dobettest/scaffold --save-dev
@@ -55,9 +57,9 @@ npm install sass^1.51.0
 npm install less-loader
 ```
 
-### 关于其他配置
+### 四、关于其他配置
 !!!! 不推荐在package.json中去配置eslint等选项，重复的配置可能导致问题
 
-### 需要改进的问题
+### 五、需要改进的问题
 
 对于一些文件仍然需要需要进行手动的导入，比如`qiankun`中的`public-path`文件，这个问题可能将在下一个版本进行修复，尽请期待。

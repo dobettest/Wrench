@@ -14,18 +14,22 @@ function runner(script) {
     }
     switch (script) {
         case "dev":
-            const devServerConf = require("../webpack/devServer");
+            const devServerConf = require("../webpack/devServer")();
             const server = new devServer(devServerConf, compiler);
             server.startCallback(() => {
                 console.log(`Starting server on http://localhost:${devServerConf["port"]}`);
             })
             break;
         case "build":
-            // compiler.run((err, res) => {
-            //     if (err) {
-            //         console.log('err')
-            //     }
-            // })
+            try {
+                compiler.run((err, res) => {
+                    if (err) {
+                        console.log('err')
+                    }
+                })
+            } catch (error) {
+                console.log('build error', error)
+            }
             break;
         default:
             break;
