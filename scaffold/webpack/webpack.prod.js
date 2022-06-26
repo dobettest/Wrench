@@ -15,12 +15,12 @@ module.exports = (envs) => {
     const optionalCacheGroups = [
         {
             name: 'commonVue',
-            test: /[\\/]node_modules[\\/](vue|vue-router|vuex)[\\/]/,
+            test: /[\\/]node_modules[\\/](@)?(vue|vue-router|vuex)[\\/]/,//兼容vue3
             priority: -5
         },
         {
             name: 'commonReact',
-            test: /[\\/]node_modules[\\/](react|react-router|react-router-dom)[\\/]/,
+            test: /[\\/]node_modules[\\/](react|react-dom|react-router|react-router-dom)[\\/]/,
             priority: -5
         }].reduce((groups, item) => { return map[item.name] === true ? Object.assign(groups, { [item.name]: item }) : groups }, {});
 
@@ -57,11 +57,13 @@ module.exports = (envs) => {
                          * 这就是为什么在 {cacheGroup}.test 字段中使用 [\\/] 来表示路径分隔符的原因。
                          * {cacheGroup}.test 中的 / 或 \ 会在跨平台使用时产生问题。
                          */
+                        name: "vendors",
                         test: /[\\/]node_modules[\\/]/,
                         priority: -10,
                         reuseExistingChunk: true
                     },
                     default: {
+                        name: "default",
                         minChunks: 2,
                         priority: -20,
                         reuseExistingChunk: true

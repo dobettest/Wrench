@@ -1,11 +1,11 @@
 const CopyPlugin = require("copy-webpack-plugin");
 const { expandConfig, getRelativePath } = require("../../utils");
-const path=require('path');
+const path = require('path');
 module.exports = () => {
     const copyPluginOptions = expandConfig("copyPlugin", {
         patterns: [
             {
-                from: path.resolve(__dirname,"../../template"),//这里有一个性能漏洞，不使用绝对路径会造成性能损耗
+                from: path.resolve(__dirname, "../../template"),//这里有一个性能漏洞，不使用绝对路径会造成性能损耗
                 to: getRelativePath('dist'),
                 toType: 'dir',
                 noErrorOnMissing: true,//修复public文件夹下只有一个index.html文件时的报错
@@ -15,7 +15,7 @@ module.exports = () => {
                     gitignore: true,
                     ignore: [
                         '.DS_Store',
-                        '**/*.html'
+                        '**/*.ejs'//不复制这个
                     ]
                 }
             },

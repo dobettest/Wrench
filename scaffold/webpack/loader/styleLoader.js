@@ -1,10 +1,14 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const postcssLoader = require('./postcssLoader');
+let cachedLoader = null;
 module.exports = (cssModules = false, importLoaders = 2) => {
+    if (cachedLoader) {
+        return cachedLoader;
+    }
     // 处理样式中的公共loader
     const { NODE_ENV } = process.env;
     const production = NODE_ENV === "build";
-    return [
+    return cachedLoader = [
         // 区分开发和生产
         production ? {
             loader: MiniCssExtractPlugin.loader

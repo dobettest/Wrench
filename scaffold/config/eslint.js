@@ -29,13 +29,17 @@ const rules = {
     ]
 
 }
+let cachedOptions = null;
 module.exports = (envs) => {
+    if (cachedOptions) {
+        return cachedOptions;
+    }
     const addtionalOptions = [
         {
             extend: 'plugin:vue/recommended',
             key: 'vue',
             rules: {},
-            plugins:['vue']
+            plugins: ['vue']
         },
         {
             extend: 'plugin:react/recommended',
@@ -108,5 +112,5 @@ module.exports = (envs) => {
         // https://cn.eslint.org/docs/rules/ 
         rules
     });
-    return eslintConfig;
+    return cachedOptions = eslintConfig;
 };

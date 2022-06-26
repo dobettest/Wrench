@@ -1,5 +1,9 @@
 const { expandConfig } = require("../utils")
+let cachedOptions = null;
 module.exports = (envs) => {
+    if (cachedOptions) {
+        return cachedOptions;
+    }
     const optionalPresets = [
         {
             name: '@babel/preset-typescript',
@@ -33,5 +37,5 @@ module.exports = (envs) => {
         ],
         cacheDirectory: true
     })
-    return babelOptions;
+    return cachedOptions = babelOptions;
 }
