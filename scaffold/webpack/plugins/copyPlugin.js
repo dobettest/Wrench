@@ -11,8 +11,8 @@ module.exports = () => {
                 noErrorOnMissing: true,//修复public文件夹下只有一个index.html文件时的报错
                 priority: -5,
                 globOptions: {
-                    dot: true,
-                    gitignore: true,
+                    // dot: true,
+                    // gitignore: true, 打开之后template的内容不会被复制，猜测会作为定位因素
                     ignore: [
                         '.DS_Store',
                         '**/*.ejs'//不复制这个

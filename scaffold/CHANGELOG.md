@@ -41,3 +41,9 @@
 ### 一、新增内容
 ### 二、修复的问题
 * (1)、[vue的babel配置冲突](https://dobettest.atlassian.net/jira/software/c/projects/WREN/boards/5?selectedIssue=WREN-26)
+
+## 5、Version(0.1.6)
+
+### 一、新增内容
+### 二、修复的问题
+* (1)、[copy-webpack-plugin内容丢失](https://dobettest.atlassian.net/jira/software/c/projects/WREN/boards/5?selectedIssue=WREN-27)
