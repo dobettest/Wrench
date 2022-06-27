@@ -28,10 +28,16 @@
 
 <hr>
 
-## 2、Version(0.1.4)
+## 3、Version(0.1.4)
 
 ### 一、新增内容
 * (1)、[optionsCached](https://dobettest.atlassian.net/jira/software/c/projects/WREN/boards/5?selectedIssue=WREN-25)
 ### 二、修复的问题
 * (1)、[vue3分包兼容处理](https://dobettest.atlassian.net/jira/software/c/projects/WREN/boards/5?selectedIssue=WREN-23)
 * (2)、[移除copy-webpack-plugin的一些无用资源](https://dobettest.atlassian.net/jira/software/c/projects/WREN/boards/5?modal=detail&selectedIssue=WREN-24)
+
+## 4、Version(0.1.5)
+
+### 一、新增内容
+### 二、修复的问题
+* (1)、[vue的babel配置冲突](https://dobettest.atlassian.net/jira/software/c/projects/WREN/boards/5?selectedIssue=WREN-26)

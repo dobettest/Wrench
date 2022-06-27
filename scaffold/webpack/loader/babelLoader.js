@@ -1,27 +1,45 @@
-const { expandConfig } = require("../../utils");
 const babelOptions = require("../../config/babel");
 module.exports = (envs) => {
-    const inititalOptions = envs['vue'] && envs['typescript'] ? { appendTsSuffixTo: [/\.vue$/] } : {}
-    const tsLoaderOptions = expandConfig('tsLoader', inititalOptions);
+    const tsxOptions = envs['vue'] && envs['typescript'] ? { appendTsxSuffixTo: [/\.vue$/] } : {};
+    const tsOptions = envs['vue'] && envs['typescript'] ? { appendTsSuffixTo: [/\.vue$/] } : {};
+    const babelLoaderOptions = babelOptions(envs);
     return [{
         test: /\.(m?js|jsx)$/,
         exclude: /node_modules/,
         use: [
             {
                 loader: 'babel-loader',
-                options: babelOptions(envs)
+                options: babelLoaderOptions
             }
         ]
     },
     {
-        test: /\.tsx?$/,
+        test: /\.ts$/,
         exclude: /node_modules/,
         use: [
             {
                 loader: 'babel-loader',
-                options: babelOptions(envs)
+                options: babelLoaderOptions
             },
-            { loader: 'ts-loader', options: tsLoaderOptions }
+            {
+                loader: 'ts-loader',
+                options: tsOptions
+            }
         ]
-    }]
+    },
+    {
+        test: /\.tsx$/,
+        exclude: /node_modules/,
+        use: [
+            {
+                loader: 'babel-loader',
+                options: babelLoaderOptions
+            },
+            {
+                loader: 'ts-loader',
+                options: tsxOptions
+            }
+        ]
+    }
+    ]
 }

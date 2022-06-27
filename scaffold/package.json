@@ -1,6 +1,6 @@
 {
   "name": "@dobettest/scaffold",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "A tool to help web developer build env",
   "main": "index.js",
   "bin": {
@@ -23,7 +23,10 @@
   },
   "keywords": [
     "scaffold",
-    "javascipt"
+    "webpack",
+    "vue",
+    "typescript",
+    "react"
   ],
   "bugs": {
     "url": "https://github.com/dobettest/Wrench/issues"

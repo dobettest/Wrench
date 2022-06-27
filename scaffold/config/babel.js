@@ -20,6 +20,7 @@ module.exports = (envs) => {
     ].map((item) => { return envs[item.key] === true ? item.name : undefined }).filter(Boolean)
     const babelOptions = expandConfig('babel', {
         presets: [
+            ...optionalPresets,
             [
                 "@babel/preset-env",
                 {
@@ -29,8 +30,7 @@ module.exports = (envs) => {
                     "useBuiltIns": "entry", // Allow importing core-js in entrypoint and use browserlist to select polyfills
                     "exclude": ['transform-typeof-symbol'], // Exclude transforms that make all code slower
                 }
-            ],
-            ...optionalPresets
+            ]
         ],
         plugins: [
             "@babel/plugin-transform-runtime"
