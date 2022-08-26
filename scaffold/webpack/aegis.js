@@ -23,7 +23,7 @@ module.exports = function (source) {
         const options = this.getOptions();
         validate(schema, options);
         const { id, uin = '', reportApiSpeed, reportAssetSpeed, spa } = options;
-        const template = `
+        return `
         import Aegis from 'aegis-web-sdk';
         ${source}
         const aegis = new Aegis({
@@ -34,8 +34,7 @@ module.exports = function (source) {
         spa: ${spa} // spa 应用页面跳转的时候开启 pv 计算
         })
         // window.AegisClient = aegis;//其他页面直接使用AegisClient就可以进行监控
-        `
-        return template;
+        `;
     } catch (error) {
         return source;//失败的话啥也不做
     }

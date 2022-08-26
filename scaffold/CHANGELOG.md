@@ -47,3 +47,9 @@
 ### 一、新增内容
 ### 二、修复的问题
 * (1)、[copy-webpack-plugin内容丢失](https://dobettest.atlassian.net/jira/software/c/projects/WREN/boards/5?selectedIssue=WREN-27)
+
+## 6、Version(0.1.7)
+
+### 一、新增内容
+### 二、修复的问题
+* (1)、[TerserPlugin重命名后问题](https://dobettest.atlassian.net/browse/WREN-30)
