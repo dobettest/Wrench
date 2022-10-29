@@ -53,3 +53,9 @@
 ### 一、新增内容
 ### 二、修复的问题
 * (1)、[TerserPlugin重命名后问题](https://dobettest.atlassian.net/browse/WREN-30)
+
+## 6、Version(0.1.8)
+
+### 一、新增内容
+### 二、修复的问题
+* (1)、[jsonpFunction更名问题](https://dobettest.atlassian.net/browse/WREN-31)
