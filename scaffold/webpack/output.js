@@ -6,7 +6,7 @@ module.exports = ({ micro = false, publicPath = "" }) => {
         return micro ? {
             library: `${name}-[name]`,
             libraryTarget: 'umd',
-            jsonpFunction: `webpackJsonp_${name}`,
+            chunkLoadingGlobal: `webpackJsonp_${name}`,
             globalObject: 'window',
         } : {}
     }
